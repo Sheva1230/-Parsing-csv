@@ -180,20 +180,21 @@ DATEIN = set(DATEIN)# с помощью функции set убираем дуб
 # print(tA_PAYER_PAYEE_DATEIN)
 # print(tO_PAYER_PAYEE_DATEIN)
 
-# total_amount_PAYER = total_amount(loaded_dict_PAYER,PAYER,'a)Total Amount Payer') #общая сумма операций плательщика
-# total_operation_PAYER = total_operati(loaded_dict_PAYER,PAYER,'c)Total Operation Payer')# общие количество операций плательщика
-# max_amount_operation_PAYER = max_amount(loaded_dict_PAYER,PAYER,'k)Max Amount Payer')
-#
-# total_amount_PAYEE = total_amount(loaded_dict_PAYEE,PAYEE,'b)Total Amount Payee')#общая сумма операций получателя
-# total_operation_PAYEE = total_operati(loaded_dict_PAYEE,PAYEE,'d)Total Operation Payee')#общая количество операций получателя
-# max_amount_operation_PAYEE = max_amount(loaded_dict_PAYEE,PAYEE,'l)Max Amount Payee')
-#
-# total_amount_DATEIN = total_amount(loaded_dict_DATEIN,DATEIN,'i)Total Amount DateIn')#общая сумма операций за каждую дату
-# total_operation_DATEIN = total_operati(loaded_dict_DATEIN,DATEIN,'j)Total Operation DateIn')#общая количество операций за дату
-#
-# tA_par_pae = transpon(tA_PAYER_PAYEE,'e)Total Amount of transactions from Payer to Payee')#Общая сумма операций от плательщика x получателю y (для каждой пары плательщик-получатель)
-# tO_par_pae = transpon(tO_PAYER_PAYEE,'f)Total Operation of transactions from Payer to Payee')#Общee количество операций от плательщика x получателю y (для каждой пары плательщик-получатель)
+total_amount_PAYER = total_amount(loaded_dict_PAYER,PAYER,'a)Total Amount Payer') #общая сумма операций плательщика
+total_operation_PAYER = total_operati(loaded_dict_PAYER,PAYER,'c)Total Operation Payer')# общие количество операций плательщика
+max_amount_operation_PAYER = max_amount(loaded_dict_PAYER,PAYER,'k)Max Amount Payer')
 
-ta_par_pae_date = tr(tA_PAYER_PAYEE_DATEIN,'g)Total Amount of transactions from Payer to Payee for date')
-print(ta_par_pae_date)
+total_amount_PAYEE = total_amount(loaded_dict_PAYEE,PAYEE,'b)Total Amount Payee')#общая сумма операций получателя
+total_operation_PAYEE = total_operati(loaded_dict_PAYEE,PAYEE,'d)Total Operation Payee')#общая количество операций получателя
+max_amount_operation_PAYEE = max_amount(loaded_dict_PAYEE,PAYEE,'l)Max Amount Payee')
+
+total_amount_DATEIN = total_amount(loaded_dict_DATEIN,DATEIN,'i)Total Amount DateIn')#общая сумма операций за каждую дату
+total_operation_DATEIN = total_operati(loaded_dict_DATEIN,DATEIN,'j)Total Operation DateIn')#общая количество операций за дату
+
+tA_par_pae = transpon(tA_PAYER_PAYEE,'e)Total Amount of transactions from Payer to Payee')#Общая сумма операций от плательщика x получателю y (для каждой пары плательщик-получатель)
+tO_par_pae = transpon(tO_PAYER_PAYEE,'f)Total Operation of transactions from Payer to Payee')#Общee количество операций от плательщика x получателю y (для каждой пары плательщик-получатель)
+
+# ta_par_pae_date = tr(tA_PAYER_PAYEE_DATEIN,'g)Total Amount of transactions from Payer to Payee for date')
+# print(ta_par_pae_date)
+
 print('Всего плательщиков: '+str(len(PAYER))+'\n'+'Всего получателей: ' + str(len(PAYEE)))
