@@ -22,39 +22,39 @@ def write_header_excel(list_header,lenth,name):
     wb = openpyxl.load_workbook(filename=name+'.xlsx')
     names = name.split(' ')
     ws = wb['Factor_Table']
-    if lenth == 1:
-        if 'Amount' in names and 'Payer' in names:
+    if 'Amount' in names and 'Payer' in names and 'from' not in names:
             for v in range(0, 3, 2):  # запись в первый столбец наименований дальнейших данных
                 if v == 0:
                     ws.cell(row=1, column=v+1).value = list_header[v]
                 else:
                     ws.cell(row=1, column=v).value = list_header[v]
-        elif 'Amount' in names and 'Payee' in names:
+    elif 'Amount' in names and 'Payee' in names and 'from' not in names:
             for v in range(1,3):
                     ws.cell(row=1, column=v).value = list_header[v]
-        elif 'Operation' in names and 'Payer' in names:
+    elif 'Operation' in names and 'Payer' in names and 'from' not in names:
             for v in range(0, 3, 2):  # запись в первый столбец наименований дальнейших данных
                 if v == 0:
                     ws.cell(row=1, column=v+1).value = list_header[v]
                 else:
                     ws.cell(row=1, column=v).value = 'Total operation'
-        elif 'Operation' in names and 'Payee' in names:
+    elif 'Operation' in names and 'Payee' in names and 'from' not in names:
             for v in range(1,3):
                     ws.cell(row=1, column=v).value = list_header[v]
-        elif 'Operation'  in names and 'transactions' in names:
+    elif 'Operation' in names and 'transactions' in names and 'from' in names:
             for count in range(1,4):
                 if count == 3:
                     ws.cell(row=1, column=count).value = 'Total Operation'
                 else:
-                    ws.cell(row=1, column=count).value = list_header[count]
-        elif 'Amount' in names and 'transactions' in names:
+                    ws.cell(row=1, column=count).value = list_header[count-1]
+    elif 'Amount' in names and 'transactions' in names and 'from' in names:
             for count in range(1, 4):
-                ws.cell(row=1, column=count).value = list_header[count]
+                ws.cell(row=1, column=count).value = list_header[count-1]
 
 
 
     wb.save(filename=name+'.xlsx')
     wb.close()
+    names.clear()
 
 #Функция на подсчёт общий суммы операций
 def total_amount(dicti,array,name):
@@ -98,14 +98,14 @@ def write_excel(array,name):
     writer = pd.ExcelWriter(name+'.xlsx', engine='xlsxwriter')
     table_taP.to_excel(writer, sheet_name='Factor_Table')
     writer.save()
-    # return (write_header_excel(header_name,size_df[1],name))
+    return (write_header_excel(header_name,size_df[1],name))
 
 def wr_excel_multi(df,name):
     size_df = df.shape
     writer = pd.ExcelWriter(name+'.xlsx', engine='xlsxwriter')
     df.to_excel(writer, sheet_name='Factor_Table')
     writer.save()
-    # return (write_header_excel(header_name, size_df[1], name))
+    return (write_header_excel(header_name, size_df[1], name))
 
 def transpon(array,name):  # функция преобразования из словаря в табличку
     df = pd.DataFrame.from_dict(array,orient='columns')  # делаем из словаря таблицу
